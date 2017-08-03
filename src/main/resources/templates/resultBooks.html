@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8" />
+    <title>page for results </title>
+</head>
+<body>
+<h1> this is the result of your input </h1>
+
+<p th:text="'SKU : ' + ${newBook.sku}"> </p>
+<p th:text="'Title : ' + ${newBook.title}"> </p>
+<p th:text="'Author : ' + ${newBook.author}"> </p>
+<p th:text=" 'Description : ' + ${newBook.description}"> </p>
+<p th:text=" 'Price : $ ' + ${newBook.price}"> </p>
+<a href="/addBooks">add more books </a>
+
+</body>
+</html>
