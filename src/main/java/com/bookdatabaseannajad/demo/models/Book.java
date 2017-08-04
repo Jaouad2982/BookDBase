@@ -2,6 +2,8 @@ package com.bookdatabaseannajad.demo.models;
 
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -10,19 +12,18 @@ import javax.validation.constraints.NotNull;
 public class Book {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    private double sku;
-
+    private String sku;
+    @NotNull
     private String title;
     private String author;
-    @NotNull
+
     private String description;
 
     @Min(1)
     private double price;
-
-
 
     public String getTitle() {
         return title;
@@ -56,11 +57,11 @@ public class Book {
         this.price = price;
     }
 
-    public double getSku() {
+    public String getSku() {
         return sku;
     }
 
-    public void setSku(double sku) {
+    public void setSku(String sku) {
         this.sku = sku;
     }
 
@@ -71,4 +72,10 @@ public class Book {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String toString(){
+        return " title : " + title + " sku " + sku;
+    }
+
+
 }

@@ -11,15 +11,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
-
+import java.util.Iterator;
 
 @Controller
 public class BookController {
 
-
     @Autowired
     BookRepository bookRepository;
-
 
     @GetMapping("/")
     public String showPage(Model model){
@@ -27,8 +25,6 @@ public class BookController {
         String myMsg = "Welcome to my page ";
         model.addAttribute("message" , myMsg);
         return "page";
-
-
     }
 
 
@@ -36,25 +32,31 @@ public class BookController {
     public String addBooks(Model model){
 
         model.addAttribute("newBook",new Book());
-
         return "addBooks";
     }
 
 
-
     @PostMapping("/addBooks")
-
-        public String showBooks(@Valid @ModelAttribute ("newBook") Book book , BindingResult bindingResult){
-
+    public String showBooks(@Valid @ModelAttribute ("newBook") Book book , BindingResult bindingResult){
 
         if(bindingResult.hasErrors() ){
         return "addBooks";
         }
         bookRepository.save(book);
         return "resultBooks";
-
-
     }
+
+
+    @GetMapping("/showAllBooks")
+    public String showmyBooks(Model model){
+
+
+
+        Iterable<Book> myList = bookRepository.findAll();
+        model.addAttribute("newBook" , myList);
+        return "showAllBooks";
+    }
+
 
 
 }
